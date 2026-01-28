@@ -1,0 +1,45 @@
+{
+  "name": "hms-backend",
+  "version": "1.0.0",
+  "description": "Home Services Marketplace Backend - Microservices Architecture",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "node scripts/install-deps.js",
+    "test": "node run-tests.js --all",
+    "test:integration": "node run-tests.js --integration",
+    "test:services": "node run-tests.js --all --skip-setup",
+    "test:setup": "docker-compose -f docker-compose.test.yml up -d && sleep 10",
+    "test:cleanup": "docker-compose -f docker-compose.test.yml down -v",
+    "test:report": "cat test-report.json",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "microservices",
+    "nodejs",
+    "redis",
+    "postgresql",
+    "docker",
+    "rest-api"
+  ],
+  "author": "HMS Development Team",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jest": "^30.2.0",
+    "prettier": "^3.2.5",
+    "supertest": "^7.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/hms-backend.git"
+  }
+}

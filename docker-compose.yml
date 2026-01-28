@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  event-bus-redis:
+    image: redis:7-alpine
+    container_name: hms_event_bus_redis
+    restart: always
+    ports:
+      - '6384:6379'   # host:container
+    volumes:
+      - event_bus_redis_data:/data
+    command: redis-server --save ""
+    # Used for:
+    # - pub/sub
+    # - future queues (BullMQ, streams)
+    # - cross-service events
+
+  cache-redis:
+    image: redis:7-alpine
+    container_name: hms_cache_redis
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - cache_redis_data:/data
+    command: redis-server --appendonly yes
+    # Used for:
+    # - locks
+    # - caching
+    # - slot reservations
+
+volumes:
+  event_bus_redis_data:
+  cache_redis_data:
