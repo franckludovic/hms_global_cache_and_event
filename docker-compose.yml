@@ -7,8 +7,6 @@ services:
     restart: always
     ports:
       - '6384:6379'   # host:container
-    volumes:
-      - event_bus_redis_data:/data
     command: redis-server --save ""
     # Used for:
     # - pub/sub
